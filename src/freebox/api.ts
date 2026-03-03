@@ -54,7 +54,7 @@ export async function discoverFreebox(host: string): Promise<boolean> {
             return true;
         }
         return false;
-    } catch (e) {
+    } catch {
         return false;
     }
 }
@@ -146,7 +146,7 @@ export async function sendKey(key: FbxKey, longPress = false): Promise<void> {
         if (!res.data?.success) {
             throw new Error(res.data?.msg || 'Freebox OS keypress rejected');
         }
-    } catch (e) {
+    } catch {
         // Fallback to classic API
         await sendHd1Command(key, longPress);
     }
@@ -156,14 +156,14 @@ export async function wakePlayer(): Promise<void> {
     // 1. Try to send the Power key via hd1
     try {
         await sendHd1Command('power');
-    } catch (e) {
-        console.warn('Waking via hd1 failed, trying OS API...');
+    } catch {
+        /* ignore */
     }
 
     // 2. Try the "Home" key via Freebox OS API (often wakes the box better)
     try {
         await http().post(`/player/1/api/v6/control/key/`, { key: 'home' });
-    } catch (e) {
+    } catch {
         // ignore
     }
 
@@ -171,7 +171,7 @@ export async function wakePlayer(): Promise<void> {
     await new Promise(r => setTimeout(r, 1000));
     try {
         await sendHd1Command('home');
-    } catch (e) {
+    } catch {
         // ignore
     }
 }
@@ -189,8 +189,8 @@ export async function launchPlayerApp(pkg: string): Promise<void> {
     // As a fallback, try the Freebox OS API anyway, ignoring the 403 error.
     try {
         await http().post(`/player/1/api/v6/control/open/`, { url: `app:?package=${pkg}` });
-    } catch (e) {
-        console.warn('launchPlayerApp not supported on this Freebox or 403 Forbidden.');
+    } catch {
+        /* ignore unsupported app launch */
     }
 }
 

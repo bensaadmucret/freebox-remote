@@ -30,8 +30,8 @@ function useRemoteAction() {
         setTimeout(() => setFeedback(null), 800);
         try {
             await fn();
-        } catch (e) {
-            console.error(e);
+        } catch {
+            // silently ignore key errors to avoid spamming the console
         }
     }, []);
 
@@ -67,9 +67,18 @@ export function Remote() {
     const { feedback, doAction } = useRemoteAction();
     const [channelInput, setChannelInput] = useState('');
     const [activeTab, setActiveTab] = useState<'remote' | 'apps' | 'channels'>('remote');
-    const { wakePlayer } = useAuth();
+    const { wakePlayer, remoteCode } = useAuth();
+
+    const ensureRemoteCode = useCallback(() => {
+        if (!remoteCode) {
+            alert('Veuillez entrer votre Code Télécommande sur l’écran de connexion.');
+            return false;
+        }
+        return true;
+    }, [remoteCode]);
 
     const dialChannel = (ch: number) => {
+        if (!ensureRemoteCode()) return;
         doAction(() => switchToChannel(ch), `Chaîne ${ch}`);
     };
 
@@ -176,7 +185,10 @@ export function Remote() {
                             key={app.label}
                             className="app-card glass"
                             style={{ '--app-color': app.color } as React.CSSProperties}
-                            onClick={() => doAction(() => switchToChannelAndOk(app.channel), `${app.label} (chaîne ${app.channel} + OK)`)}
+                            onClick={() => {
+                                if (!ensureRemoteCode()) return;
+                                doAction(() => switchToChannelAndOk(app.channel), `${app.label} (chaîne ${app.channel} + OK)`);
+                            }}
                         >
                             <span className="app-icon">{app.icon}</span>
                             <span className="app-label">{app.label}</span>
