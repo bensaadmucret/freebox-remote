@@ -2,8 +2,11 @@
 
 Une interface web moderne pour contrôler votre Freebox locale (Pop, Révolution, Delta, etc.) depuis votre navigateur, avec une UI soignée en mode "Glassmorphism" et "Dark Mode".
 
-![Setup Screen](.gemini/antigravity/brain/452a2c60-a11c-4792-a79e-80f10b1669f7/screenshot_setup.png)
+![Écran de configuration](public/screenshots/setup-screen.png)
 *(Aperçu de l'interface de connexion)*
+
+![Écran télécommande](public/screenshots/remote-screen.png)
+*(Télécommande complète avec onglets Apps/Chaînes)*
 
 ## Fonctionnalités 🚀
 
@@ -38,6 +41,10 @@ Pour pallier ce fonctionnement :
    ```
 4. Ouvrez votre navigateur sur l'adresse indiquée : **[http://localhost:5174](http://localhost:5174)**.
 
+### Où trouver le Code Télécommande ?
+
+Sur votre TV Freebox : `Réglages` → `Système` → `Informations Freebox` → `Code télécommande`. Le code comporte 8 chiffres et doit être saisi une seule fois dans l'application : il sera ensuite sauvegardé localement.
+
 ## Sécurité & Confidentialité 🔒
 
 L'application tourne **100% en local**. Aucun token n'est envoyé à un serveur externe. 
@@ -51,4 +58,3 @@ L'application utilise actuellement de petits "Proxys Dev" inclus dans Vite (`/fb
 
 ---
 Développé avec React, TypeScript et Vite.
-# freebox-remote

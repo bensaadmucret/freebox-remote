@@ -1,0 +1,282 @@
+/* ── Setup Screen ───────────────────────────── */
+.setup-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 70px);
+    padding: 20px;
+}
+
+.setup-card {
+    width: 100%;
+    max-width: 520px;
+    border-radius: var(--radius-lg);
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* Hero */
+.setup-hero {
+    text-align: center;
+}
+
+.fbx-logo {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 10px;
+}
+
+.logo-f {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.logo-text {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.logo-badge {
+    background: var(--accent);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-left: 8px;
+    align-self: center;
+}
+
+.setup-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* Saved Profiles */
+.saved-profiles-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.profiles-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all var(--trans);
+    background: var(--bg-card);
+}
+
+.profile-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.profile-connect-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+}
+
+.profile-host {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.profile-code {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.profile-delete-btn {
+    padding: 0 16px;
+    background: transparent;
+    border: none;
+    border-left: 1px solid var(--glass-border);
+    color: var(--text-dim);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color var(--trans);
+    height: 100%;
+    align-self: stretch;
+}
+
+.profile-delete-btn:hover {
+    color: #ef4444;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 10px 0;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.divider span {
+    padding: 0 14px;
+}
+
+/* Form */
+.setup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.host-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.host-chip {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    border-radius: var(--radius-full);
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all var(--trans);
+    font-family: inherit;
+}
+
+.host-chip:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+}
+
+.host-chip.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+}
+
+/* Status boxes */
+.status-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+}
+
+.status-pending {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.status-pending p {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    margin-top: 4px;
+}
+
+.status-error {
+    background: rgba(230, 0, 38, 0.1);
+    border: 1px solid rgba(230, 0, 38, 0.3);
+}
+
+.status-info {
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    gap: 10px;
+}
+
+.status-icon {
+    font-size: 1.2rem;
+}
+
+/* Connect button */
+.connect-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: var(--radius-full);
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all var(--trans);
+    box-shadow: 0 4px 20px rgba(230, 0, 38, 0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+.connect-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: white;
+    opacity: 0;
+    transition: opacity var(--trans);
+}
+
+.connect-btn:hover::after {
+    opacity: 0.1;
+}
+
+.connect-btn:active {
+    transform: scale(0.97);
+}
+
+.connect-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.setup-note {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
