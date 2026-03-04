@@ -173,8 +173,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const logout = useCallback(async () => {
         await closeSession();
+        if (pollRef.current) {
+            clearInterval(pollRef.current);
+            pollRef.current = null;
+        }
         localStorage.removeItem(LS_TOKEN);
+        localStorage.removeItem(LS_HOST);
         localStorage.removeItem(LS_REMOTE_CODE);
+        setRemoteCode('');
         setStatus('idle');
         setPermissions({});
     }, []);
@@ -195,17 +201,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
             if (savedToken && savedHost) {
                 await restoreSession(savedHost, savedToken, savedRemoteCode || '');
-            } else {
-                const defaultHost = 'mafreebox.freebox.fr';
-                const isReachable = await discoverFreebox(defaultHost);
-                if (isReachable && status === 'idle') {
-                    connect(defaultHost, savedRemoteCode || '');
-                }
             }
         };
         checkAuto();
         return () => { if (pollRef.current) clearInterval(pollRef.current); };
-    }, [connect, restoreSession, status]);
+    }, [restoreSession]);
 
 
     return (
